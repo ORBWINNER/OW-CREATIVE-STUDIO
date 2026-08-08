@@ -100,7 +100,7 @@ export function SiteHeader() {
         isScrolled ? "site-header-scrolled" : ""
       } ${isMenuOpen ? "site-header-menu-open" : ""}`}
     >
-      <Container className="flex min-h-20 items-center justify-between gap-4">
+      <Container className="flex min-h-[84px] items-center justify-between gap-4">
         <Link
           href="/"
           className="brand"

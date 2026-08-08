@@ -9,6 +9,8 @@ import {
 
 import { Container } from "@/components/ui/container";
 
+import heroArt from "@/public/images/home/hero/hero-main.webp";
+
 import styles from "./home-hero.module.css";
 
 const statistics = [
@@ -32,19 +34,19 @@ const statistics = [
 
 export function HomeHero() {
   return (
-    <section className={styles.section} aria-labelledby="home-hero-title">
+    <section className={styles.section}>
       <div className={styles.backgroundGrid} aria-hidden="true" />
       <div className={styles.backgroundGlow} aria-hidden="true" />
 
       <Container className={styles.container}>
         <div className={styles.heroGrid}>
           <div className={styles.content}>
-            <p className={styles.eyebrow}>
-              <Sparkles size={13} strokeWidth={1.8} aria-hidden="true" />
-              Creative design studio
-            </p>
+            <div className={styles.eyebrow}>
+              <Sparkles size={14} strokeWidth={1.8} aria-hidden="true" />
+              <span>Creative Design Studio</span>
+            </div>
 
-            <h1 id="home-hero-title" className={styles.title}>
+            <h1 className={styles.title}>
               We create spaces
               <span>that feel unforgettable.</span>
             </h1>
@@ -71,11 +73,12 @@ export function HomeHero() {
           <div className={styles.visual}>
             <div className={styles.imageFrame}>
               <Image
-                src="/images/home/hero/hero-main.webp"
-                alt="Premium artistic interior created by OW Creative Studio"
+                src={heroArt}
+                alt="Artistic interior created by OW Creative Studio"
                 fill
                 priority
-                sizes="(max-width: 767px) 92vw, (max-width: 1100px) 78vw, 46vw"
+                placeholder="blur"
+                sizes="(max-width: 1100px) 92vw, 48vw"
                 className={styles.image}
               />
 
@@ -88,8 +91,11 @@ export function HomeHero() {
 
               <div className={styles.imageBottom}>
                 <div>
-                  <span>Independent creative studio</span>
-                  <strong>Creative work shaped around real spaces.</strong>
+                  <span>Independent Creative Studio</span>
+
+                  <strong>
+                    Creative work shaped around real spaces.
+                  </strong>
                 </div>
 
                 <span>Est. 2016</span>
@@ -97,14 +103,14 @@ export function HomeHero() {
             </div>
 
             <div className={styles.visualLabel}>
-              <span>Selected discipline</span>
+              <span>Selected Discipline</span>
               <strong>Spatial Art</strong>
             </div>
           </div>
         </div>
 
         <div className={styles.bottomRow}>
-          <div className={styles.statistics} aria-label="Studio statistics">
+          <div className={styles.statistics}>
             {statistics.map((statistic) => (
               <div key={statistic.label} className={styles.statistic}>
                 <strong>{statistic.value}</strong>
@@ -114,7 +120,7 @@ export function HomeHero() {
           </div>
 
           <a href="#studio-introduction" className={styles.scrollLink}>
-            Discover more
+            <span>Discover More</span>
             <ArrowDown size={15} aria-hidden="true" />
           </a>
         </div>

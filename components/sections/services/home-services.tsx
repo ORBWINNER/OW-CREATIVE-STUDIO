@@ -71,19 +71,19 @@ export function HomeServices() {
             </p>
 
             <h2 id="home-services-title" className={styles.heading}>
-              Our Creative Services
+              Our Creative <span>Services</span>
             </h2>
 
             <p className={styles.description}>
               From expressive wall art to handcrafted spatial details, we
-              create visual experiences shaped around the identity,
-              atmosphere and purpose of every project.
+              create visual experiences shaped around the identity, atmosphere
+              and purpose of every project.
             </p>
           </div>
 
           <Link href="/services" className={styles.headerLink}>
             View All Services
-            <ArrowUpRight size={16} />
+            <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
         </div>
 
@@ -92,47 +92,44 @@ export function HomeServices() {
             const Icon = service.icon;
 
             return (
-              <article
-                key={service.title}
-                className={styles.card}
-              >
-                {/* IMAGE */}
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-                    className={styles.image}
-                  />
-                </div>
-
-                <div className={styles.cardTop}>
-                  <span className={styles.number}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <span className={styles.icon}>
-                    <Icon size={20} strokeWidth={1.45} />
-                  </span>
-                </div>
-
-                <div className={styles.cardContent}>
-                  <h3 className={styles.title}>
-                    {service.title}
-                  </h3>
-
-                  <p className={styles.text}>
-                    {service.description}
-                  </p>
-                </div>
-
+              <article key={service.title} className={styles.card}>
                 <Link
                   href={service.href}
-                  className={styles.cardLink}
+                  className={styles.cardLinkArea}
+                  aria-label={`Explore ${service.title}`}
                 >
-                  Explore Service
-                  <ArrowUpRight size={15} />
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 767px) 100vw, (max-width: 1100px) 50vw, 34vw"
+                      className={styles.image}
+                    />
+
+                    <div className={styles.overlay} aria-hidden="true" />
+                  </div>
+
+                  <div className={styles.cardTop}>
+                    <span className={styles.number}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className={styles.icon} aria-hidden="true">
+                      <Icon size={16} strokeWidth={1.45} />
+                    </span>
+                  </div>
+
+                  <div className={styles.cardContent}>
+                    <h3 className={styles.title}>{service.title}</h3>
+
+                    <p className={styles.text}>{service.description}</p>
+
+                    <span className={styles.cardAction}>
+                      Explore Service
+                      <ArrowUpRight size={13} aria-hidden="true" />
+                    </span>
+                  </div>
                 </Link>
               </article>
             );

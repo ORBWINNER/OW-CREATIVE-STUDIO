@@ -4,7 +4,7 @@
   overflow: hidden;
   background: #171614;
   color: #ffffff;
-  padding-block: clamp(84px, 8vw, 118px);
+  padding-block: clamp(52px, 5vw, 68px);
 }
 
 .section::before {
@@ -40,11 +40,11 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   color: var(--gold-400);
-  font-size: .68rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
@@ -57,10 +57,10 @@
 .heading {
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(3.2rem,5.4vw,6rem);
+  font-size: clamp(2.65rem, 3.7vw, 4rem);
   font-weight: 500;
-  line-height: .9;
-  letter-spacing: -.05em;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
 }
 
 .heading span {
@@ -72,46 +72,46 @@
 
 .description {
   max-width: 620px;
-  margin: 24px 0 0;
-  color: rgba(255,255,255,.58);
-  font-size: .92rem;
-  line-height: 1.8;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.92rem;
+  line-height: 1.7;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4,minmax(0,1fr));
-  gap: 24px;
-  margin-top: clamp(48px,6vw,72px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: clamp(32px, 4vw, 44px);
 }
 
 .card {
   position: relative;
-  padding: 30px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.02);
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
   transition:
-    transform .25s ease,
-    border-color .25s ease,
-    background .25s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 .card::before {
   position: absolute;
-  top: 22px;
-  right: 22px;
-  width: 54px;
-  height: 54px;
-  border: 1px solid rgba(201,133,26,.18);
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(201, 133, 26, 0.18);
   border-radius: 50%;
   content: "";
-  transition: transform .35s ease;
+  transition: transform 0.35s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(201,133,26,.28);
-  background: rgba(201,133,26,.05);
+  border-color: rgba(201, 133, 26, 0.28);
+  background: rgba(201, 133, 26, 0.05);
 }
 
 .card:hover::before {
@@ -120,62 +120,62 @@
 
 .number {
   display: inline-block;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   color: var(--gold-400);
-  font-size: .68rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
 }
 
 .card h3 {
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(1.6rem,2vw,2.2rem);
+  font-size: clamp(1.6rem, 2vw, 2.2rem);
   font-weight: 500;
   line-height: 1.05;
-  letter-spacing: -.03em;
+  letter-spacing: -0.03em;
 }
 
 .card p {
-  margin: 18px 0 0;
-  color: rgba(255,255,255,.56);
-  font-size: .82rem;
-  line-height: 1.75;
+  margin: 13px 0 0;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.82rem;
+  line-height: 1.65;
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
   .section {
-    padding-block: 74px;
+    padding-block: 52px;
   }
 
   .heading {
-    font-size: clamp(2.9rem,13vw,4.6rem);
+    font-size: clamp(2.5rem, 11vw, 3.65rem);
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 18px;
-    margin-top: 46px;
+    gap: 16px;
+    margin-top: 32px;
   }
 
   .card {
-    padding: 26px;
+    padding: 23px;
   }
 }
 
-@media (max-width:480px) {
+@media (max-width: 480px) {
   .section {
-    padding-block: 66px;
+    padding-block: 46px;
   }
 
   .card {
-    padding: 22px;
+    padding: 21px;
   }
 
   .card h3 {
@@ -183,6 +183,6 @@
   }
 
   .number {
-    margin-bottom: 22px;
+    margin-bottom: 18px;
   }
 }

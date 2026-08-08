@@ -121,7 +121,7 @@
     minmax(115px, 0.68fr)
     minmax(225px, 1.12fr);
   gap: clamp(24px, 3.2vw, 48px);
-  padding-block: clamp(30px, 3.2vw, 40px) 22px;
+  padding-block: clamp(27px, 2.88vw, 36px) 20px;
 }
 
 .brandColumn {
@@ -178,7 +178,7 @@
 
 .description {
   max-width: 255px;
-  margin: 13px 0 0;
+  margin: 12px 0 0;
   color: rgba(247, 243, 236, 0.58);
   font-size: 0.68rem;
   line-height: 1.58;
@@ -188,7 +188,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 12px;
+  margin-top: 11px;
 }
 
 .socialLink {
@@ -225,7 +225,7 @@
 }
 
 .columnTitle {
-  margin: 0 0 12px;
+  margin: 0 0 11px;
   color: var(--gold-400);
   font-size: 0.61rem;
   font-weight: 800;
@@ -237,7 +237,7 @@
 .linkList {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -283,7 +283,7 @@
 .contactList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
   margin: 0;
   font-style: normal;
 }
@@ -321,7 +321,7 @@ a.contactItem:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 11px;
+  margin-top: 10px;
   color: rgba(247, 243, 236, 0.58);
   font-size: 0.61rem;
   line-height: 1.35;
@@ -343,7 +343,7 @@ a.contactItem:hover {
 
 .bottom {
   display: flex;
-  min-height: 36px;
+  min-height: 32px;
   align-items: center;
   justify-content: space-between;
   gap: 22px;
@@ -390,7 +390,7 @@ a.contactItem:hover {
     display: grid;
     grid-template-columns: minmax(220px, 1fr) auto;
     gap: 0 24px;
-    padding-top: 18px;
+    padding-top: 16px;
     border-top: 1px solid rgba(247, 243, 236, 0.08);
   }
 
@@ -407,14 +407,14 @@ a.contactItem:hover {
 @media (max-width: 860px) {
   .main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 30px 34px;
-    padding-block: 32px 24px;
+    gap: 27px 34px;
+    padding-block: 29px 22px;
   }
 
   .brandColumn {
     grid-column: 1 / -1;
     padding-right: 0;
-    padding-bottom: 22px;
+    padding-bottom: 20px;
     border-right: 0;
     border-bottom: 1px solid rgba(201, 133, 26, 0.12);
   }
@@ -430,8 +430,8 @@ a.contactItem:hover {
 
 @media (max-width: 600px) {
   .main {
-    gap: 28px 22px;
-    padding-block: 30px 22px;
+    gap: 25px 22px;
+    padding-block: 27px 20px;
   }
 
   .contactColumn {
@@ -439,15 +439,15 @@ a.contactItem:hover {
   }
 
   .designCredit {
-    margin-top: 13px;
+    margin-top: 12px;
   }
 
   .bottom {
     min-height: auto;
     flex-direction: column;
     align-items: flex-start;
-    gap: 7px;
-    padding-block: 12px;
+    gap: 6px;
+    padding-block: 11px;
   }
 
   .bottom p:last-child {
@@ -470,7 +470,7 @@ a.contactItem:hover {
   }
 
   .brandColumn {
-    padding-bottom: 22px;
+    padding-bottom: 20px;
   }
 }
 
