@@ -13,60 +13,15 @@ import {
 } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
+import {
+  quoteBudgetOptions,
+  quoteProjectTypeOptions,
+  quoteServiceOptions,
+  quoteSpaceSizeOptions,
+  quoteTimelineOptions,
+} from "@/data/project-form-options";
 
 import styles from "./quote-page-content.module.css";
-
-const serviceOptions = [
-  "Mural Art",
-  "Wall Painting",
-  "Canvas Art",
-  "Interior Art",
-  "Terracotta Art",
-  "Decorative Wall Art",
-  "Custom Artwork",
-  "Art Space Enhancement",
-  "Graphic Design",
-  "Logo Design",
-  "Brand Identity",
-  "Other",
-];
-
-const projectTypeOptions = [
-  "Residential",
-  "Commercial",
-  "Office",
-  "Restaurant",
-  "Hotel",
-  "Retail",
-  "Hospitality",
-  "Public Space",
-  "Other",
-];
-
-const spaceSizeOptions = [
-  "Small — Under 100 sq. ft.",
-  "Medium — 100–500 sq. ft.",
-  "Large — 500–1,500 sq. ft.",
-  "Extra Large — Above 1,500 sq. ft.",
-  "Not sure yet",
-];
-
-const timelineOptions = [
-  "Urgent — Within 2 weeks",
-  "Within 1 month",
-  "Within 2–3 months",
-  "Within 3–6 months",
-  "Flexible",
-];
-
-const budgetOptions = [
-  "Under ৳50,000",
-  "৳50,000–৳1,00,000",
-  "৳1,00,000–৳3,00,000",
-  "৳3,00,000–৳5,00,000",
-  "Above ৳5,00,000",
-  "Need guidance",
-];
 
 const processSteps = [
   {
@@ -154,10 +109,9 @@ export function QuotePageContent() {
       }
     });
 
-    setSelectedFiles((currentFiles) => [
-      ...currentFiles,
-      ...validFiles,
-    ].slice(0, maximumFiles));
+    setSelectedFiles((currentFiles) =>
+      [...currentFiles, ...validFiles].slice(0, maximumFiles),
+    );
 
     setFileError(validationMessage);
     event.target.value = "";
@@ -167,6 +121,7 @@ export function QuotePageContent() {
     setSelectedFiles((currentFiles) =>
       currentFiles.filter((_, index) => index !== fileIndex),
     );
+
     setFileError("");
   };
 
@@ -180,7 +135,7 @@ export function QuotePageContent() {
   };
 
   return (
-    <main>
+    <div>
       <section className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroGrid} aria-hidden="true" />
@@ -387,7 +342,7 @@ export function QuotePageContent() {
                             Select a service
                           </option>
 
-                          {serviceOptions.map((option) => (
+                          {quoteServiceOptions.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -412,7 +367,7 @@ export function QuotePageContent() {
                             Select project type
                           </option>
 
-                          {projectTypeOptions.map((option) => (
+                          {quoteProjectTypeOptions.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -450,7 +405,7 @@ export function QuotePageContent() {
                             Select approximate size
                           </option>
 
-                          {spaceSizeOptions.map((option) => (
+                          {quoteSpaceSizeOptions.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -484,7 +439,7 @@ export function QuotePageContent() {
                             Select a timeline
                           </option>
 
-                          {timelineOptions.map((option) => (
+                          {quoteTimelineOptions.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -509,7 +464,7 @@ export function QuotePageContent() {
                             Select a budget range
                           </option>
 
-                          {budgetOptions.map((option) => (
+                          {quoteBudgetOptions.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -553,7 +508,9 @@ export function QuotePageContent() {
                         </p>
                       </div>
 
-                      <span>{selectedFiles.length}/{maximumFiles}</span>
+                      <span>
+                        {selectedFiles.length}/{maximumFiles}
+                      </span>
                     </div>
 
                     <input
@@ -609,6 +566,7 @@ export function QuotePageContent() {
 
                             <span className={styles.fileDetails}>
                               <strong>{file.name}</strong>
+
                               <small>
                                 {(file.size / 1024 / 1024).toFixed(2)} MB
                               </small>
@@ -673,6 +631,7 @@ export function QuotePageContent() {
 
                     <div>
                       <strong>Your project enquiry has been prepared.</strong>
+
                       <p>
                         The live submission workflow will be activated during
                         backend integration.
@@ -690,7 +649,9 @@ export function QuotePageContent() {
         <Container>
           <div className={styles.processHeader}>
             <div>
-              <span className={styles.sectionEyebrow}>What happens next</span>
+              <span className={styles.sectionEyebrow}>
+                What happens next
+              </span>
 
               <h2>
                 A clear journey from first enquiry to finished artwork.
@@ -721,7 +682,9 @@ export function QuotePageContent() {
       <section className={styles.closingSection}>
         <Container>
           <div className={styles.closingContent}>
-            <span className={styles.sectionEyebrow}>Not ready for a quote?</span>
+            <span className={styles.sectionEyebrow}>
+              Not ready for a quote?
+            </span>
 
             <h2>
               Begin with a conversation about your space and creative ideas.
@@ -734,6 +697,6 @@ export function QuotePageContent() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }

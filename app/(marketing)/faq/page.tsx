@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 
+import {
+  MarketingPageShell,
+  MarketingSection,
+} from "@/components/layout/marketing-page-shell";
+
 import { FinalCta } from "@/components/sections/cta/final-cta";
 import { FaqPageContent } from "@/components/sections/faq/faq-page-content";
 
@@ -11,9 +16,14 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
   return (
-    <>
-      <FaqPageContent />
-      <FinalCta />
-    </>
+    <MarketingPageShell>
+      <MarketingSection tone="light">
+        <FaqPageContent />
+      </MarketingSection>
+
+      <MarketingSection tone="dark">
+        <FinalCta />
+      </MarketingSection>
+    </MarketingPageShell>
   );
 }

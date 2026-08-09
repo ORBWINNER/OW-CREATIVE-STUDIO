@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
 
+import {
+  MarketingPageShell,
+  MarketingSection,
+} from "@/components/layout/marketing-page-shell";
+
 import { FinalCta } from "@/components/sections/cta/final-cta";
 import { ServicesPageContent } from "@/components/sections/services/services-page-content";
 
 export const metadata: Metadata = {
-  title: "Creative Services",
+  title: "Services",
   description:
-    "Explore wall painting, mural art, terracotta art, canvas painting, custom artwork, space enhancement, graphic design, logo design and brand identity services from OW Creative Studio.",
+    "Explore OW Creative Studio services including wall painting, mural art, terracotta art, canvas painting and creative space enhancement.",
 };
 
 export default function ServicesPage() {
   return (
-    <>
-      <ServicesPageContent />
-      <FinalCta />
-    </>
+    <MarketingPageShell>
+      <MarketingSection tone="light">
+        <ServicesPageContent />
+      </MarketingSection>
+
+      <MarketingSection tone="dark">
+        <FinalCta />
+      </MarketingSection>
+    </MarketingPageShell>
   );
 }

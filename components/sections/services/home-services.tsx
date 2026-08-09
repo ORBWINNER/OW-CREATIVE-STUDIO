@@ -1,60 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  Brush,
-  Frame,
-  Layers3,
-  Paintbrush,
-  Shapes,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
+import { homeServices } from "@/data/services";
 
 import styles from "./home-services.module.css";
-
-const services = [
-  {
-    title: "Wall Painting",
-    description:
-      "Custom wall paintings that bring colour, emotion and identity to residential, commercial and hospitality spaces.",
-    href: "/services/wall-painting",
-    image: "/images/home/services/wall-painting.webp",
-    icon: Paintbrush,
-  },
-  {
-    title: "Mural Art",
-    description:
-      "Large-scale murals shaped around architecture, brand character and meaningful visual storytelling.",
-    href: "/services/mural-art",
-    image: "/images/home/services/mural-art.webp",
-    icon: Brush,
-  },
-  {
-    title: "Terracotta Art",
-    description:
-      "Handcrafted terracotta compositions that combine traditional material with contemporary spatial design.",
-    href: "/services/terracotta-art",
-    image: "/images/home/services/terracotta-art.webp",
-    icon: Shapes,
-  },
-  {
-    title: "Canvas Painting",
-    description:
-      "Bespoke canvas artworks developed with a distinctive visual language for your interior and collection.",
-    href: "/services/canvas-painting",
-    image: "/images/home/services/canvas-painting.webp",
-    icon: Frame,
-  },
-  {
-    title: "Art Space Enhancement",
-    description:
-      "Thoughtful artistic interventions that improve atmosphere, identity and the overall experience of a space.",
-    href: "/services/art-space-enhancement",
-    image: "/images/home/services/art-space-enhancement.webp",
-    icon: Layers3,
-  },
-];
 
 export function HomeServices() {
   return (
@@ -88,7 +39,7 @@ export function HomeServices() {
         </div>
 
         <div className={styles.grid}>
-          {services.map((service, index) => {
+          {homeServices.map((service, index) => {
             const Icon = service.icon;
 
             return (
@@ -99,13 +50,15 @@ export function HomeServices() {
                   aria-label={`Explore ${service.title}`}
                 >
                   <div className={styles.imageWrapper}>
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      sizes="(max-width: 767px) 100vw, (max-width: 1100px) 50vw, 34vw"
-                      className={styles.image}
-                    />
+                    {service.image ? (
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 767px) 100vw, (max-width: 1100px) 50vw, 34vw"
+                        className={styles.image}
+                      />
+                    ) : null}
 
                     <div className={styles.overlay} aria-hidden="true" />
                   </div>
@@ -123,7 +76,9 @@ export function HomeServices() {
                   <div className={styles.cardContent}>
                     <h3 className={styles.title}>{service.title}</h3>
 
-                    <p className={styles.text}>{service.description}</p>
+                    <p className={styles.text}>
+                      {service.homeDescription}
+                    </p>
 
                     <span className={styles.cardAction}>
                       Explore Service

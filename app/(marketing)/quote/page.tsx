@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 
+import {
+  MarketingPageShell,
+  MarketingSection,
+} from "@/components/layout/marketing-page-shell";
+
 import { QuotePageContent } from "@/components/sections/quote/quote-page-content";
 
 export const metadata: Metadata = {
@@ -9,5 +14,11 @@ export const metadata: Metadata = {
 };
 
 export default function QuotePage() {
-  return <QuotePageContent />;
+  return (
+    <MarketingPageShell>
+      <MarketingSection tone="light">
+        <QuotePageContent />
+      </MarketingSection>
+    </MarketingPageShell>
+  );
 }

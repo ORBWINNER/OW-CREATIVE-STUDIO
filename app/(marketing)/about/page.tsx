@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 
+import {
+  MarketingPageShell,
+  MarketingSection,
+} from "@/components/layout/marketing-page-shell";
+
 import { AboutHero } from "@/components/sections/about/about-hero";
 import { AboutPhilosophy } from "@/components/sections/about/about-philosophy";
 import { AboutStory } from "@/components/sections/about/about-story";
@@ -12,10 +17,18 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
-      <AboutHero />
-      <AboutStory />
-      <AboutPhilosophy />
-    </>
+    <MarketingPageShell>
+      <MarketingSection tone="light">
+        <AboutHero />
+      </MarketingSection>
+
+      <MarketingSection tone="dark">
+        <AboutStory />
+      </MarketingSection>
+
+      <MarketingSection tone="light">
+        <AboutPhilosophy />
+      </MarketingSection>
+    </MarketingPageShell>
   );
 }

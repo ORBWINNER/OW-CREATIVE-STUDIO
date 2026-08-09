@@ -3,32 +3,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
+import { homePortfolioItems } from "@/data/portfolio";
 
 import styles from "./selected-works.module.css";
-
-const works = [
-  {
-    id: "01",
-    title: "Luxury Interior Wall Art",
-    category: "Residential",
-    image: "/images/home/portfolio/project-01.webp",
-    href: "/portfolio/luxury-interior-wall-art",
-  },
-  {
-    id: "02",
-    title: "Restaurant Mural Design",
-    category: "Commercial",
-    image: "/images/home/portfolio/project-02.webp",
-    href: "/portfolio/restaurant-mural-design",
-  },
-  {
-    id: "03",
-    title: "Terracotta Feature Wall",
-    category: "Art Installation",
-    image: "/images/home/portfolio/project-03.webp",
-    href: "/portfolio/terracotta-feature-wall",
-  },
-];
 
 export function SelectedWorks() {
   return (
@@ -65,7 +42,7 @@ export function SelectedWorks() {
         </div>
 
         <div className={styles.grid}>
-          {works.map((work) => (
+          {homePortfolioItems.map((work) => (
             <article key={work.id} className={styles.project}>
               <Link
                 href={work.href}

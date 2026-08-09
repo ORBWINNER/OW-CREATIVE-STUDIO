@@ -1,3 +1,8 @@
+import {
+  MarketingPageShell,
+  MarketingSection,
+} from "@/components/layout/marketing-page-shell";
+
 import { FinalCta } from "@/components/sections/cta/final-cta";
 import { HomeHero } from "@/components/sections/hero/home-hero";
 import { StudioIntroduction } from "@/components/sections/introduction/studio-introduction";
@@ -7,46 +12,40 @@ import { HomeServices } from "@/components/sections/services/home-services";
 import { ClientTestimonials } from "@/components/sections/testimonials/client-testimonials";
 import { WhyChooseUs } from "@/components/sections/why-choose-us/why-choose-us";
 
-import styles from "./page.module.css";
-
 export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <div className={styles.backgroundPattern} aria-hidden="true" />
+    <MarketingPageShell>
+      <MarketingSection tone="light">
+        <HomeHero />
+      </MarketingSection>
 
-      <main className={styles.sectionStack}>
-        <div className={`${styles.sectionFrame} ${styles.lightFrame}`}>
-          <HomeHero />
-        </div>
+      <MarketingSection tone="dark">
+        <WhyChooseUs />
+      </MarketingSection>
 
-        <div className={`${styles.sectionFrame} ${styles.darkFrame}`}>
-          <WhyChooseUs />
-        </div>
+      <MarketingSection tone="light">
+        <StudioIntroduction />
+      </MarketingSection>
 
-        <div className={`${styles.sectionFrame} ${styles.lightFrame}`}>
-          <StudioIntroduction />
-        </div>
+      <MarketingSection tone="dark">
+        <HomeServices />
+      </MarketingSection>
 
-        <div className={`${styles.sectionFrame} ${styles.darkFrame}`}>
-          <HomeServices />
-        </div>
+      <MarketingSection tone="light">
+        <SelectedWorks />
+      </MarketingSection>
 
-        <div className={`${styles.sectionFrame} ${styles.lightFrame}`}>
-          <SelectedWorks />
-        </div>
+      <MarketingSection tone="dark">
+        <CreativeProcess />
+      </MarketingSection>
 
-        <div className={`${styles.sectionFrame} ${styles.darkFrame}`}>
-          <CreativeProcess />
-        </div>
+      <MarketingSection tone="light">
+        <ClientTestimonials />
+      </MarketingSection>
 
-        <div className={`${styles.sectionFrame} ${styles.lightFrame}`}>
-          <ClientTestimonials />
-        </div>
-
-        <div className={`${styles.sectionFrame} ${styles.darkFrame}`}>
-          <FinalCta />
-        </div>
-      </main>
-    </div>
+      <MarketingSection tone="dark">
+        <FinalCta />
+      </MarketingSection>
+    </MarketingPageShell>
   );
 }

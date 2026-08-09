@@ -186,7 +186,8 @@
     -260px 360px 0 -1px rgba(255, 255, 255, 0.018);
 }
 
-.sectionFrame > section {
+.sectionFrame > section,
+.sectionFrame > main {
   position: relative;
   z-index: 1;
   width: 100%;

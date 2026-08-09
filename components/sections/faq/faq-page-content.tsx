@@ -81,123 +81,121 @@ export function FaqPageContent() {
   }
 
   return (
-    <main>
-      <section
-        className={styles.section}
-        aria-labelledby="faq-page-title"
-      >
-        <Container>
-          <div className={styles.hero}>
-            <div className={styles.heroMeta}>
-              <p className={styles.eyebrow}>
-                <span className={styles.eyebrowLine} aria-hidden="true" />
-                Questions and answers
-              </p>
+    <section
+      className={styles.section}
+      aria-labelledby="faq-page-title"
+    >
+      <Container>
+        <div className={styles.hero}>
+          <div className={styles.heroMeta}>
+            <p className={styles.eyebrow}>
+              <span className={styles.eyebrowLine} aria-hidden="true" />
+              Questions and answers
+            </p>
 
-              <span className={styles.pageIndex}>OW / FAQ</span>
-            </div>
-
-            <div className={styles.heroContent}>
-              <h1 id="faq-page-title" className={styles.heading}>
-                Clear answers before your
-                <span>creative project begins.</span>
-              </h1>
-
-              <p className={styles.introduction}>
-                Explore common questions about our services, process, pricing,
-                customization and project delivery. Every project is different,
-                but these answers provide a clear starting point.
-              </p>
-            </div>
+            <span className={styles.pageIndex}>OW / FAQ</span>
           </div>
 
-          <div className={styles.faqHeader}>
-            <div>
-              <span className={styles.sectionNumber}>01</span>
+          <div className={styles.heroContent}>
+            <h1 id="faq-page-title" className={styles.heading}>
+              Clear answers before your
+              <span>creative project begins.</span>
+            </h1>
 
-              <h2>
-                Frequently asked
-                <span>questions</span>
-              </h2>
-            </div>
-
-            <p>
-              Select a question to view the answer. For project-specific
-              information, requirements can be discussed directly with the
-              studio.
+            <p className={styles.introduction}>
+              Explore common questions about our services, process, pricing,
+              customization and project delivery. Every project is different,
+              but these answers provide a clear starting point.
             </p>
           </div>
+        </div>
 
-          <div className={styles.accordion}>
-            {faqItems.map((item, index) => {
-              const isOpen = openIndex === index;
-              const questionId = `${accordionId}-question-${index}`;
-              const answerId = `${accordionId}-answer-${index}`;
+        <div className={styles.faqHeader}>
+          <div>
+            <span className={styles.sectionNumber}>01</span>
 
-              return (
-                <article
-                  key={item.question}
-                  className={`${styles.item} ${
-                    isOpen ? styles.itemOpen : ""
-                  }`}
+            <h2>
+              Frequently asked
+              <span>questions</span>
+            </h2>
+          </div>
+
+          <p>
+            Select a question to view the answer. For project-specific
+            information, requirements can be discussed directly with the
+            studio.
+          </p>
+        </div>
+
+        <div className={styles.accordion}>
+          {faqItems.map((item, index) => {
+            const isOpen = openIndex === index;
+            const questionId = `${accordionId}-question-${index}`;
+            const answerId = `${accordionId}-answer-${index}`;
+
+            return (
+              <article
+                key={item.question}
+                className={`${styles.item} ${
+                  isOpen ? styles.itemOpen : ""
+                }`}
+              >
+                <button
+                  id={questionId}
+                  type="button"
+                  className={styles.trigger}
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => toggleItem(index)}
                 >
-                  <button
-                    id={questionId}
-                    type="button"
-                    className={styles.trigger}
-                    aria-expanded={isOpen}
-                    aria-controls={answerId}
-                    onClick={() => toggleItem(index)}
-                  >
-                    <span className={styles.itemNumber}>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                  <span className={styles.itemNumber}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                    <span className={styles.question}>{item.question}</span>
+                  <span className={styles.question}>{item.question}</span>
 
-                    <span className={styles.toggleIcon} aria-hidden="true">
-                      {isOpen ? (
-                        <Minus size={21} strokeWidth={1.6} />
-                      ) : (
-                        <Plus size={21} strokeWidth={1.6} />
-                      )}
-                    </span>
-                  </button>
+                  <span className={styles.toggleIcon} aria-hidden="true">
+                    {isOpen ? (
+                      <Minus size={21} strokeWidth={1.6} />
+                    ) : (
+                      <Plus size={21} strokeWidth={1.6} />
+                    )}
+                  </span>
+                </button>
 
-                  <div
-                    id={answerId}
-                    className={styles.answerWrapper}
-                    role="region"
-                    aria-labelledby={questionId}
-                    aria-hidden={!isOpen}
-                  >
-                    <div className={styles.answerInner}>
-                      <p>{item.answer}</p>
-                    </div>
+                <div
+                  id={answerId}
+                  className={styles.answerWrapper}
+                  role="region"
+                  aria-labelledby={questionId}
+                  aria-hidden={!isOpen}
+                >
+                  <div className={styles.answerInner}>
+                    <p>{item.answer}</p>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className={styles.supportBlock}>
+          <span className={styles.supportNumber}>02</span>
+
+          <div>
+            <h2>
+              Still have a
+              <span>specific question?</span>
+            </h2>
+
+            <p>
+              Share a short description of your project, preferred service,
+              location and approximate timeline. We can then provide more
+              relevant information based on your requirements.
+            </p>
           </div>
-
-          <div className={styles.supportBlock}>
-            <span className={styles.supportNumber}>02</span>
-
-            <div>
-              <h2>
-                Still have a
-                <span>specific question?</span>
-              </h2>
-
-              <p>
-                Share a short description of your project, preferred service,
-                location and approximate timeline. We can then provide more
-                relevant information based on your requirements.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-    </main>
+        </div>
+      </Container>
+    </section>
   );
 }
