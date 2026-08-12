@@ -1,8 +1,10 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useState } from "react";
 import {
   ArrowUpRight,
+  CheckCircle2,
   Clock3,
   Mail,
   MapPin,
@@ -51,13 +53,76 @@ const contactDetails = [
   },
 ];
 
+type SubmissionState = "idle" | "submitting" | "success" | "error";
+
 export function ContactPageContent() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (submissionState === "submitting") {
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      service: String(formData.get("service") ?? ""),
+      projectDetails: String(formData.get("projectDetails") ?? ""),
+      timeline: String(formData.get("timeline") ?? ""),
+      budget: String(formData.get("budget") ?? ""),
+      consent: formData.get("consent") === "on",
+    };
+
+    setSubmissionState("submitting");
+    setSubmissionMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !result.success) {
+        setSubmissionState("error");
+        setSubmissionMessage(
+          result.message ||
+            "We could not submit your enquiry. Please try again.",
+        );
+        return;
+      }
+
+      setSubmissionState("success");
+      setSubmissionMessage(
+        result.message || "Your enquiry has been received.",
+      );
+
+      form.reset();
+    } catch {
+      setSubmissionState("error");
+      setSubmissionMessage(
+        "Something went wrong while submitting your enquiry. Please try again.",
+      );
+    }
   }
 
   return (
-    <section
+    <div
       className={styles.section}
       aria-labelledby="contact-page-title"
     >
@@ -186,6 +251,7 @@ export function ContactPageContent() {
           <div className={styles.formPanel}>
             <div className={styles.formHeading}>
               <span>Project enquiry form</span>
+
               <p>
                 Fields marked with an asterisk are required to submit the
                 form.
@@ -337,15 +403,47 @@ export function ContactPageContent() {
                 </span>
               </label>
 
+              {submissionMessage ? (
+                <div
+                  role={submissionState === "error" ? "alert" : "status"}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    marginTop: "4px",
+                    fontSize: "0.75rem",
+                    lineHeight: 1.6,
+                    color:
+                      submissionState === "error"
+                        ? "#9f2f20"
+                        : "#355330",
+                  }}
+                >
+                  {submissionState === "success" ? (
+                    <CheckCircle2 size={18} strokeWidth={1.8} />
+                  ) : null}
+
+                  <span>{submissionMessage}</span>
+                </div>
+              ) : null}
+
               <div className={styles.formFooter}>
                 <p>
-                  This form is currently presented as part of the website
-                  structure. Submission integration will be activated during
-                  the finishing phase.
+                  Your enquiry will be reviewed by the studio before the next
+                  project discussion.
                 </p>
 
-                <button type="submit" className={styles.submitButton}>
-                  <span>Send enquiry</span>
+                <button
+                  type="submit"
+                  className={styles.submitButton}
+                  disabled={submissionState === "submitting"}
+                >
+                  <span>
+                    {submissionState === "submitting"
+                      ? "Sending..."
+                      : "Send enquiry"}
+                  </span>
+
                   <Send size={18} strokeWidth={1.6} aria-hidden="true" />
                 </button>
               </div>
@@ -373,6 +471,6 @@ export function ContactPageContent() {
           </div>
         </div>
       </Container>
-    </section>
+    </div>
   );
 }

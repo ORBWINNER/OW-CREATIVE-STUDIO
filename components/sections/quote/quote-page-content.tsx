@@ -60,12 +60,16 @@ const acceptedFileTypes = [
 const maximumFileSize = 8 * 1024 * 1024;
 const maximumFiles = 5;
 
+type SubmissionState = "idle" | "submitting" | "success" | "error";
+
 export function QuotePageContent() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [fileError, setFileError] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
 
   const handleFileSelection = (event: ChangeEvent<HTMLInputElement>) => {
     const incomingFiles = Array.from(event.target.files ?? []);
@@ -125,13 +129,68 @@ export function QuotePageContent() {
     setFileError("");
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitted(true);
 
-    window.setTimeout(() => {
-      setIsSubmitted(false);
-    }, 6000);
+    if (submissionState === "submitting") {
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    formData.set(
+      "consent",
+      formData.get("consent") === "on" ? "true" : "false",
+    );
+
+    formData.delete("referenceFiles");
+
+    selectedFiles.forEach((file) => {
+      formData.append("referenceFiles", file);
+    });
+
+    setSubmissionState("submitting");
+    setSubmissionMessage("");
+
+    try {
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !result.success) {
+        setSubmissionState("error");
+        setSubmissionMessage(
+          result.message ||
+            "We could not submit your quotation request. Please try again.",
+        );
+        return;
+      }
+
+      setSubmissionState("success");
+      setSubmissionMessage(
+        result.message || "Your quotation request has been received.",
+      );
+
+      form.reset();
+      setSelectedFiles([]);
+      setFileError("");
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch {
+      setSubmissionState("error");
+      setSubmissionMessage(
+        "Something went wrong while submitting your quotation request. Please try again.",
+      );
+    }
   };
 
   return (
@@ -528,6 +587,7 @@ export function QuotePageContent() {
                       type="button"
                       className={styles.uploadArea}
                       onClick={() => fileInputRef.current?.click()}
+                      disabled={submissionState === "submitting"}
                     >
                       <span className={styles.uploadIcon}>
                         <Upload size={22} strokeWidth={1.7} />
@@ -575,6 +635,7 @@ export function QuotePageContent() {
                             <button
                               type="button"
                               aria-label={`Remove ${file.name}`}
+                              disabled={submissionState === "submitting"}
                               onClick={() => removeSelectedFile(index)}
                             >
                               <X size={16} strokeWidth={1.8} />
@@ -605,11 +666,15 @@ export function QuotePageContent() {
                   <button
                     type="submit"
                     className={styles.submitButton}
-                    disabled={isSubmitted}
+                    disabled={submissionState === "submitting"}
                   >
-                    {isSubmitted ? "Request received" : "Request a Quote"}
+                    {submissionState === "submitting"
+                      ? "Sending request..."
+                      : submissionState === "success"
+                        ? "Request received"
+                        : "Request a Quote"}
 
-                    {isSubmitted ? (
+                    {submissionState === "success" ? (
                       <Check size={18} strokeWidth={2} />
                     ) : (
                       <ArrowUpRight size={18} strokeWidth={1.8} />
@@ -617,27 +682,32 @@ export function QuotePageContent() {
                   </button>
 
                   <p>
-                    This form currently provides the quotation enquiry
-                    interface. Submission integration will be connected during
-                    the production phase.
+                    Your project information will be securely submitted for
+                    studio review.
                   </p>
                 </div>
 
-                {isSubmitted ? (
+                {submissionState === "success" ? (
                   <div className={styles.successMessage} role="status">
                     <span>
                       <Check size={18} strokeWidth={2} />
                     </span>
 
                     <div>
-                      <strong>Your project enquiry has been prepared.</strong>
+                      <strong>Your quotation request has been received.</strong>
 
                       <p>
-                        The live submission workflow will be activated during
-                        backend integration.
+                        {submissionMessage ||
+                          "Our team will review your project details and references before contacting you."}
                       </p>
                     </div>
                   </div>
+                ) : null}
+
+                {submissionState === "error" ? (
+                  <p className={styles.fileError} role="alert">
+                    {submissionMessage}
+                  </p>
                 ) : null}
               </form>
             </div>
