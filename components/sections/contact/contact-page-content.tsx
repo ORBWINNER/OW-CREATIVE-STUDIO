@@ -32,16 +32,16 @@ const contactDetails = [
   },
   {
     label: "Phone",
-    value: "+880 0000 000000",
+    value: "+880 1886295628",
     note: "Available during regular business hours",
-    href: "tel:+8800000000000",
+    href: "tel:+8801886295628",
     icon: Phone,
   },
   {
     label: "WhatsApp",
-    value: "+880 0000 000000",
+    value: "+880 1886295628",
     note: "For quick project-related communication",
-    href: "https://wa.me/8800000000000",
+    href: "https://wa.me/8801886295628",
     icon: MessageCircle,
   },
   {
