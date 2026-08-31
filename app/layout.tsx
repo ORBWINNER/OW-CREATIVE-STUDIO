@@ -19,12 +19,49 @@ const bodyFont = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://owcreativestudio.com"),
+
   title: {
     default: "OW Creative Studio",
     template: "%s | OW Creative Studio",
   },
+
   description:
     "OW Creative Studio transforms spaces through artistic design, wall painting, mural art, terracotta art and creative interior solutions.",
+
+  applicationName: "OW Creative Studio",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "OW Creative Studio",
+    title: "OW Creative Studio",
+    description:
+      "OW Creative Studio transforms spaces through artistic design, wall painting, mural art, terracotta art and creative interior solutions.",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "OW Creative Studio",
+    description:
+      "OW Creative Studio transforms spaces through artistic design, wall painting, mural art, terracotta art and creative interior solutions.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import {
   MarketingPageShell,
   MarketingSection,
@@ -11,6 +13,17 @@ import { CreativeProcess } from "@/components/sections/process/creative-process"
 import { HomeServices } from "@/components/sections/services/home-services";
 import { ClientTestimonials } from "@/components/sections/testimonials/client-testimonials";
 import { WhyChooseUs } from "@/components/sections/why-choose-us/why-choose-us";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "OW Creative Studio | Art, Murals & Creative Spaces",
+  },
+  description:
+    "OW Creative Studio creates wall paintings, murals, terracotta art, canvas artwork, visual identities and artistic solutions for meaningful spaces.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function HomePage() {
   return (
